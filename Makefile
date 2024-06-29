@@ -1,5 +1,6 @@
 
 config ?= compileClasspath
+version ?= $(shell grep 'Plugin-Version' plugins/nf-cid/src/resources/META-INF/MANIFEST.MF | awk '{ print $$2 }')
 
 ifdef module 
 mm = :${module}:
@@ -15,13 +16,20 @@ clean:
 	./gradlew clean
 
 compile:
-	./gradlew :nextflow:exportClasspath compileGroovy
+	./gradlew plugins:nf-cid:compileGroovy
 	@echo "DONE `date`"
 
+docs:
+	./gradlew plugins:nf-cid:groovydoc
+	@echo "DONE `date`"
 
 check:
 	./gradlew check
 
+install:
+	./gradlew copyPluginZip
+	rm -rf ${HOME}/.nextflow/plugins/nf-cid-${version}
+	cp -r build/plugins/nf-cid-${version} ${HOME}/.nextflow/plugins/
 
 #
 # Show dependencies try `make deps config=runtime`, `make deps config=google`
@@ -63,7 +71,6 @@ buildPlugins:
 #
 upload:
 	./gradlew upload
-
 
 upload-plugins:
 	./gradlew plugins:upload
