@@ -1,13 +1,13 @@
-# nf-hello plugin 
+# nf-cid plugin 
  
-This project contains a simple Nextflow plugin called `nf-hello` which provides examples of different plugin extensions:
+This project contains a simple Nextflow plugin called `nf-cid` which provides examples of different plugin extensions:
 
 - A custom trace observer that prints a message when the workflow starts and when the workflow completes
 - A custom channel factory called `reverse`
 - A custom operator called `goodbye`
 - A custom function called `randomString`
 
-NOTE: If you want to use this project as a starting point for a custom plugin, you must rename the `plugins/nf-hello` folder and update `settings.gradle` with your plugin name.
+NOTE: If you want to use this project as a starting point for a custom plugin, you must rename the `plugins/nf-cid` folder and update `settings.gradle` with your plugin name.
 
 See the [Nextflow documentation](https://nextflow.io/docs/latest/plugins.html) for more information about developing plugins.
 
@@ -17,27 +17,27 @@ See the [Nextflow documentation](https://nextflow.io/docs/latest/plugins.html) f
     
     Gradle project settings. 
 
-- `plugins/nf-hello`
+- `plugins/nf-cid`
     
     The plugin implementation base directory.
 
-- `plugins/nf-hello/build.gradle` 
+- `plugins/nf-cid/build.gradle` 
     
     Plugin Gradle build file. Project dependencies should be added here.
 
-- `plugins/nf-hello/src/resources/META-INF/MANIFEST.MF` 
+- `plugins/nf-cid/src/resources/META-INF/MANIFEST.MF` 
     
     Manifest file defining the plugin attributes e.g. name, version, etc. The attribute `Plugin-Class` declares the plugin main class. This class should extend the base class `nextflow.plugin.BasePlugin` e.g. `nextflow.hello.HelloPlugin`.
 
-- `plugins/nf-hello/src/resources/META-INF/extensions.idx`
+- `plugins/nf-cid/src/resources/META-INF/extensions.idx`
     
     This file declares one or more extension classes provided by the plugin. Each line should contain the fully qualified name of a Java class that implements the `org.pf4j.ExtensionPoint` interface (or a sub-interface).
 
-- `plugins/nf-hello/src/main` 
+- `plugins/nf-cid/src/main` 
 
     The plugin implementation sources.
 
-- `plugins/nf-hello/src/test` 
+- `plugins/nf-cid/src/test` 
 
     The plugin unit tests. 
 
@@ -80,9 +80,9 @@ To build and test the plugin during development, configure a local Nextflow buil
     make assemble
     ```
 
-4. Run Nextflow with the plugin, using `./launch.sh` as a drop-in replacement for the `nextflow` command, and adding the option `-plugins nf-hello` to load the plugin:
+4. Run Nextflow with the plugin, using `./launch.sh` as a drop-in replacement for the `nextflow` command, and adding the option `-plugins nf-cid` to load the plugin:
     ```bash
-    ./launch.sh run nextflow-io/hello -plugins nf-hello
+    ./launch.sh run nextflow-io/hello -plugins nf-cid
     ```
 
 ## Testing without Nextflow build
@@ -95,7 +95,7 @@ The plugin can be tested without using a local Nextflow build using the followin
 
 ## Package, upload, and publish
 
-The project should be hosted in a GitHub repository whose name matches the name of the plugin, that is the name of the directory in the `plugins` folder (e.g. `nf-hello`).
+The project should be hosted in a GitHub repository whose name matches the name of the plugin, that is the name of the directory in the `plugins` folder (e.g. `nf-cid`).
 
 Follow these steps to package, upload and publish the plugin:
 
@@ -108,7 +108,7 @@ Follow these steps to package, upload and publish the plugin:
 
 2. Use the following command to package and create a release for your plugin on GitHub:
     ```bash
-    ./gradlew :plugins:nf-hello:upload
+    ./gradlew :plugins:nf-cid:upload
     ```
 
 3. Create a pull request against [nextflow-io/plugins](https://github.com/nextflow-io/plugins/blob/main/plugins.json) to make the plugin accessible to Nextflow.

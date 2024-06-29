@@ -66,7 +66,7 @@ class HelloDslTest extends Dsl2Spec{
     def 'should perform a hi and create a channel' () {
         when:
         def SCRIPT = '''
-            include {reverse} from 'plugin/nf-hello'
+            include {reverse} from 'plugin/nf-cid'
             channel.reverse('hi!') 
             '''
         and:
@@ -79,7 +79,7 @@ class HelloDslTest extends Dsl2Spec{
     def 'should store a goodbye' () {
         when:
         def SCRIPT = '''
-            include {goodbye} from 'plugin/nf-hello'
+            include {goodbye} from 'plugin/nf-cid'
             channel
                 .of('folks')
                 .goodbye() 
@@ -95,7 +95,7 @@ class HelloDslTest extends Dsl2Spec{
     def 'can use an imported function' () {
         when:
         def SCRIPT = '''
-            include {randomString} from 'plugin/nf-hello'
+            include {randomString} from 'plugin/nf-cid'
             channel
                 .of( randomString(20) )                
             '''
